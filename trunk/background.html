@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2011 Peter Frandsen (pfrandsen@gmail.com). Based on sample code from The Chromium Authors.
+ * Use of this source code is governed by the Apache 2.0 license that can be found here: http://www.apache.org/licenses/LICENSE-2.0
+-->
+<html>
+  <head></head>
+  <body>
+    <script>
+      /**
+       * Performs an XMLHttpRequest to url-expander.appspot.com/expand.jsp to expand a url.
+       * @param request JSON Object Data sent in the request. Is used as parameter to the
+       *     callback function. If the HTTP request returns status 200, then the expanded
+       *     url will be added to the request object with key "expanded".
+       * @param callback Function Called when the HTTP request is finished. The request
+       *      parameter is used as argument to the callback function.
+       */
+      function expandURL(request, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              request.expanded = xhr.responseText;
+              //var data = JSON.parse(xhr.responseText);
+            }
+            callback(request);
+          }
+        }
+        xhr.open("GET", "http://url-expander.appspot.com/expand.jsp?url=" + encodeURIComponent(request.url), true);
+        xhr.send();
+      };
+
+      /**
+       * Handles data sent via chrome.extension.sendRequest().
+       * @param request JSON Object Data sent in the request. Contains the url to be expanded. 
+       * @param sender Object Origin of the request.
+       * @param callback Function The method to call when the request completes.
+       */
+      function onRequest(request, sender, callback) {
+        expandURL(request, callback);
+      };
+
+      // Wire up the listener.
+      chrome.extension.onRequest.addListener(onRequest);
+    </script>
+  </body>
+</html>
