@@ -20,13 +20,20 @@
         xhr.onreadystatechange = function() {
           if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-              request.expanded = xhr.responseText;
-              //var data = JSON.parse(xhr.responseText);
+              try {
+                var data = JSON.parse(xhr.responseText);
+                if (data.expanded) {
+                  request.expanded = decodeURIComponent(data.longURL);
+                }
+              }
+              catch (parseException) {
+                console.log("parse error: " + parseException);
+              }
             }
             callback(request);
           }
         }
-        xhr.open("GET", "http://url-expander.appspot.com/expand.jsp?url=" + encodeURIComponent(request.url), true);
+        xhr.open("GET", "http://url-expander.appspot.com/expand2.jsp?url=" + encodeURIComponent(request.url), true);
         xhr.send();
       };
 

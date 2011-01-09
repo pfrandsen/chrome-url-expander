@@ -13,7 +13,6 @@ document.addEventListener('mousemove', function (e) {
 }, false);
 
 document.addEventListener('keydown', function (e) {
-  console.log("keydown event 5");
   if (e.keyCode == 17) {  // ctrl pressed
     var target = document.elementFromPoint(_expander.posX, _expander.posY);
     if (target) {
@@ -26,7 +25,7 @@ document.addEventListener('keydown', function (e) {
             anchor.href = anchor.getAttribute("data-expanded");
           }
         } else {  // expand the url if it matches url shortener pattern
-          urlRegEx = /(http:\/\/)(\w{1,8}\.\w{1,3})\/\w{1,10}$/i;
+          urlRegEx = /http:\/\/(\w{1,8}\.\w{1,3})\/\w{1,10}$/i;
           if (urlRegEx.test(anchor.href)) {
             console.log("matched, expanding: " + anchor.href);
             var key = _expander.cur++;
