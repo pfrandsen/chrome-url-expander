@@ -2,7 +2,7 @@
   "name": "URL expander",
   "version": "1.0.1",
   "permissions": [
-    "http://url-expander.appspot.com/*"
+    "http://*/"
   ],
   "background_page" : "background.html",
   "content_scripts": [
