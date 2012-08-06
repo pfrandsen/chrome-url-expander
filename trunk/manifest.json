@@ -5,7 +5,9 @@
   "permissions": [ 
     "http://url-expander.appspot.com/*"
   ],
-  "background_page" : "background.html",
+    "background": {
+      "page": "background.html"
+    },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
