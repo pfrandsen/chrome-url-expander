@@ -1,6 +1,7 @@
 {
   "name": "URL expander",
   "version": "1.0.1",
+  "manifest_version": 2,
   "permissions": [ 
     "http://url-expander.appspot.com/*"
   ],
