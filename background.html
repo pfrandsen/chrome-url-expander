@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
- * Copyright (c) 2011 Peter Frandsen (pfrandsen@gmail.com). Based on sample code from The Chromium Authors.
+ * Copyright (c) 2011-2012 Peter Frandsen (pfrandsen@gmail.com). Based on sample code from The Chromium Authors.
  * Use of this source code is governed by the Apache 2.0 license that can be found here: http://www.apache.org/licenses/LICENSE-2.0
 -->
 <html>
@@ -21,7 +21,6 @@
           if (xhr.readyState == 4) {
             if (xhr.status == 200) {
               request.expanded = xhr.responseText;
-              //var data = JSON.parse(xhr.responseText);
             }
             callback(request);
           }
