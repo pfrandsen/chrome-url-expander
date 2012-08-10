@@ -18,4 +18,4 @@ and the expanded URL.
 Regular expression to if url is possibly shortened is inspired by Don
 Magee (http://www.tacticalcoder.com)
 
-/(http:\/\/)(\w{1,8}\.\w{1,3})\/\w{1,10}$/i;
+/http:\/\/\w{1,8}\.\w{1,3}\/\w{1,10}$/i;
