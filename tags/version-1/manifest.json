@@ -1,0 +1,18 @@
+{
+  "name": "URL expander",
+  "version": "1.0.1",
+  "manifest_version": 2,
+  "permissions": [ 
+    "http://url-expander.appspot.com/*"
+  ],
+    "background": {
+      "page": "background.html"
+    },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["expand.js"],
+      "all_frames": true
+    }
+  ]
+}
