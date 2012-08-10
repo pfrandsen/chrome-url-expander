@@ -1,0 +1,16 @@
+{
+  "name": "URL expander",
+  "version": "1.0.5",
+  "manifest_version": 2,
+  "content_security_policy": "default-src 'none'; script-src 'self'; connect-src http://url-expander.appspot.com",
+  "permissions": [ 
+    "http://url-expander.appspot.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["expand.js"],
+      "all_frames": true
+    }
+  ]
+}
