@@ -18,10 +18,9 @@ import webapp2
 from google.appengine.api.urlfetch import fetch
 
 class expandUrl(webapp2.RequestHandler):
-    def get(self):
+	def get(self):
 		self.response.headers.add('Content-Type','text/plain')
 		self.response.headers.add('Access-Control-Allow-Origin','*')
-		self.response.headers.add('User-Agent','url-expander-py.appspot.com')
 		url=self.request.get('url')
 
 		if not url:
@@ -30,12 +29,11 @@ class expandUrl(webapp2.RequestHandler):
 			return
 
 		try:
-			result=fetch(url,validate_certificate=False)
+			result=fetch(url,validate_certificate=False,follow_redirects=True)
 			url=result.final_url if result.final_url else url
 			self.response.out.write(url)
-		except: # problem
-			self.response.out.write(self.request.get('url'))
-
+		except Exception as e: # show errors if &debug is defined
+			self.response.out.write(e if self.request.get('debug') else self.request.get('url'))
 
 app = webapp2.WSGIApplication([('/', expandUrl)],
-                              debug=True)
+								debug=True)
